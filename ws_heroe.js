@@ -22,7 +22,7 @@ const selectorReferenc = document.querySelector("#sidebar_heroes > table > tbody
 const questsInfoElement = document.createElement("div");
 questsInfoElement.style.marginTop = "10px";
 questsInfoElement.style.textAlign = "center";
-questsInfoElement.innerHTML = `<strong>Quest Fáciles Para subir de nivel:</strong>${questsFaciles} `;
+questsInfoElement.innerHTML = `<strong>Quest para subir de nivel</br> Fáciles: </strong>${questsFaciles} `;
 selectorReferenc.parentNode.insertBefore(questsInfoElement, selectorReferenc);
 
 // Eliminar el texto no deseado
@@ -36,13 +36,14 @@ const nivelHeroeElement = document.querySelector("#nivelh > strong");
 const nivelHeroe = parseInt(nivelHeroeElement.textContent, 10);
 
 // Calcular la capacidad máxima de tropas
-const capacidadMaxima = nivelHeroe * 4000;
+const capacidadMaxima = nivelHeroe * 4;
 
 // Crear un elemento para mostrar la capacidad con espacio y centrado
 const capacidadElement = document.createElement("div");
 capacidadElement.style.marginTop = "10px"; // Espacio superior de 10px
+capacidadElement.style.marginBottom = "10px"; // Espacio inferior de 10px
 capacidadElement.style.textAlign = "center"; // Centrar el texto
-capacidadElement.innerHTML = `<strong>Capacidad Máxima:</strong> ${capacidadMaxima}`;
+capacidadElement.innerHTML = `Capacidad Máxima:<strong> ${capacidadMaxima}K</strong>`;
 
 // Insertar el elemento después del selector indicado
 const selectorReferencia = document.querySelector("#sidebar_heroes > table > tbody > tr:nth-child(2) > td:nth-child(1) > div > table.inforecursos");
