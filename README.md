@@ -1,2 +1,5 @@
-# EEExtProRemix
- Una extensión para el navegador Chrome que agrega funcionalidades y facilidades al juego Empire-Strike
+# ESExtPro
+
+## Extensión para Empire-Strike
+
+Mejoras en todos lados, lo que el ES debería ser.
