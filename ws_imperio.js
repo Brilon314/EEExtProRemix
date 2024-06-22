@@ -345,3 +345,46 @@ function imperio_generateImperio(id, name, raze, game, round, clan, ciudades, pr
     "pacifico": pacifico
   }
 }
+
+
+// Esperamos a que la tabla se cargue completamente
+const waitForTable = setInterval(() => {
+  const table = document.querySelector("#contenido > table:nth-child(7)");
+  if (table) {
+    clearInterval(waitForTable);
+    modifyTable(table);
+  }
+}, 500); // Verificar cada 500ms
+
+function modifyTable(table) {
+  // Agregar el encabezado de la nueva columna en la fila de encabezado
+  const headerRow = table.querySelector("thead > tr");
+  const newHeaderCell = document.createElement("th");
+  newHeaderCell.textContent = "O+P";
+  newHeaderCell.style.fontSize = "0.9em";
+  // newHeaderCell.classList.add("sorttable_numeric"); // Agregar clase para ordenamiento numérico
+
+  headerRow.appendChild(newHeaderCell);
+
+  // Iterar sobre las filas de datos (excluyendo la fila de encabezado)
+  const rows = table.querySelectorAll("tbody > tr");
+  rows.forEach((row, index) => {
+    // Calcular el total de oro y producción
+    const oroCell = row.querySelector("td:nth-child(8)");
+    const produccionCell = row.querySelector("td:nth-child(9)");
+    const oro = parseFloat(oroCell.textContent.replace(".", "").replace(",", "."));
+    const produccion = parseFloat(produccionCell.textContent.replace(".", "").replace(",", "."));
+    const total = oro + produccion;
+
+  // Crear la nueva celda y agregarla a la fila (modificado)
+const newCell = document.createElement("td");
+const totalEnMiles = total / 1000;
+newCell.textContent = totalEnMiles.toFixed(0) + "k"; // Mostrar en miles con "k"
+newCell.style.fontSize = "0.9em";
+row.appendChild(newCell);
+
+    // Agregar las clases "impar" y "par" a las filas (mismo código que antes)
+    row.classList.add(index % 2 === 0 ? "par" : "impar");
+  });
+
+}

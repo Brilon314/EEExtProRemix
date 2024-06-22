@@ -103,6 +103,9 @@ menuDesplegable.style.border = "1px solid black";*/
   // Creación de la opción de exportar dentro del menú desplegable
   const opcionExportar = $("<div>Exportar formaciones</div>").appendTo(menuDesplegable);
   $(opcionExportar).on("click", exportData);
+    // Creación de la opción de exportar dentro del menú desplegable
+  const opcionExportar2 = $("<div>Exportar Ataques</div>").appendTo(menuDesplegable);
+  $(opcionExportar2).on("click", exportData2);
   // Función para mostrar/ocultar el menú desplegable al hacer clic en el botón Extras
   $(btnExtras).on("click", function() {
     $(menuDesplegable).toggle();
@@ -149,6 +152,26 @@ btnExtras.addEventListener("click", function() {
       descargarDatos(nomArchivo, formaciones);
     } else {
       alert('No hay formaciones guardadas para exportar.');
+    }
+  }
+    // Función para exportar datos (la misma que tenías)
+  function exportData2() {
+    const Atacar = localStorage.getItem('Atacar');
+    if (Atacar) {
+      var fechaActual = new Date();
+      var dia = fechaActual.getDate();
+      var mes = fechaActual.getMonth() + 1;
+      var año = fechaActual.getFullYear();
+      var fechaFormateada = dia + "-" + mes + "-" + año;
+      const Atacar2 = localStorage.getItem('Atacar');
+      var dataJSON = Atacar2;
+      var objeto = JSON.parse(dataJSON);
+      var nombre = objeto.nombre;
+      var clan = objeto.clan;
+      var nomArchivo = nombre + "_" + clan + "_" + fechaFormateada + ".json";
+      descargarDatos(nomArchivo, Atacar);
+    } else {
+      alert('No hay Atacar guardadas para exportar.');
     }
   }
 
